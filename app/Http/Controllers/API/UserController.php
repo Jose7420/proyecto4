@@ -5,7 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+
 use App\Http\Resources\UserResource;
+
 class UserController extends Controller
 {
     /**
@@ -63,7 +65,6 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
         return new UserResource($user);
     }
 
@@ -76,7 +77,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+
         $userData = json_decode($request->getContent(), true);
         $user->update($userData['data']['attributes']);
 
@@ -91,7 +92,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
         $user->delete();
     }
 }

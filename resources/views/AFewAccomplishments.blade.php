@@ -1,5 +1,9 @@
 @extends("layouts.master")
+<<<<<<< HEAD
 @section("content")
+=======
+@section("contacto")
+>>>>>>> 16f1f1623e2a9bd2c6e0bc6c23db3e6799f7d20c
 
 <section id="three">
     <div class="container">

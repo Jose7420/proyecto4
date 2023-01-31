@@ -25,7 +25,7 @@ return [
 
     'allowed_headers' => ['*'],
 
-    'exposed_headers' => ['x-total-count'],
+    'exposed_headers' => [],
 
     'max_age' => 0,
 

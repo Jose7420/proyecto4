@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+
 use App\Http\Resources\CustomerResource;
 
 class CustomerController extends Controller
@@ -14,6 +15,7 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index(Request $request)
     {
         // /
@@ -44,6 +46,7 @@ class CustomerController extends Controller
             : Customer::paginate($numElementos);
 
             return CustomerResource::collection($registrosCustomers);
+
     }
 
     /**
@@ -55,7 +58,9 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $customer = json_decode($request->getContent(), true);
+
         $customer = Customer::create($customer['data']['attributes']);
+
         return new CustomerResource($customer);
     }
 
@@ -82,7 +87,8 @@ class CustomerController extends Controller
         $customerData = json_decode($request->getContent(), true);
         $customer->update($customerData['data']['attributes']);
 
-         return new CustomerResource($customer);
+        return new CustomerResource($customer);
+
     }
 
     /**
