@@ -20,4 +20,5 @@ class UserResource extends JsonResource
             'attributes' => parent::toArray($request)
         ];
     }
+
 }

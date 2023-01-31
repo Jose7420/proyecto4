@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
 
     public function run()
     {
+
         Model::unguard();
         Schema::disableForeignKeyConstraints();
 
@@ -22,5 +23,6 @@ class DatabaseSeeder extends Seeder
 
         Schema::enableForeignKeyConstraints();
  }
+
 }
 
