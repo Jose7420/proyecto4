@@ -14,10 +14,36 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return CustomerResource::collection(Customer::paginate());
+        // /
+        // $busqueda =$request->input('filter');
+        // $pagina = $request->input('page');
+
+        // $numElementos= $pagina['size'];
+        // $numPagina = $pagina['number'];
+
+        // $request->merge(array('page'=>$numPagina));
+
+        // $registroCustumers =  ($busqueda && array_key_exists('q',$busqueda))
+        //     ?Customer::where('first_name','like', '%'.$busqueda['q'].'%')->paginate($numElementos)
+        //     // ->limit($numElementos)
+        //     // ->offset(($numPagina -1) * $numElementos)
+        //     // ->get()
+        //     :Customer::paginate();
+
+        // return CustomerResource::collection($registroCustumers);
+
+
+        $busqueda = $request->input('filter');
+        $numElementos = $request->input('numElements');
+        $registrosCustomers =
+            ($busqueda && array_key_exists('q', $busqueda))
+            ? Customer::where('first_name', 'like', '%' .$busqueda['q'] . '%')
+                ->paginate($numElementos)
+            : Customer::paginate($numElementos);
+
+            return CustomerResource::collection($registrosCustomers);
     }
 
     /**
