@@ -10,6 +10,17 @@ use App\Http\Resources\CustomerResource;
 
 class CustomerController extends Controller
 {
+
+    /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Customer::class, 'customer');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,25 +29,6 @@ class CustomerController extends Controller
 
     public function index(Request $request)
     {
-        // /
-        // $busqueda =$request->input('filter');
-        // $pagina = $request->input('page');
-
-        // $numElementos= $pagina['size'];
-        // $numPagina = $pagina['number'];
-
-        // $request->merge(array('page'=>$numPagina));
-
-        // $registroCustumers =  ($busqueda && array_key_exists('q',$busqueda))
-        //     ?Customer::where('first_name','like', '%'.$busqueda['q'].'%')->paginate($numElementos)
-        //     // ->limit($numElementos)
-        //     // ->offset(($numPagina -1) * $numElementos)
-        //     // ->get()
-        //     :Customer::paginate();
-
-        // return CustomerResource::collection($registroCustumers);
-
-
         $busqueda = $request->input('filter');
         $numElementos = $request->input('numElements');
         $registrosCustomers =
