@@ -5,6 +5,11 @@ namespace App\Providers;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
+use App\Models\Customer;
+use App\Models\User;
+use App\Policies\CustomerPolicy;
+use Illuminate\Support\Facades\Gate;
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -31,5 +36,8 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         //
+        // Gate::define('update-customer', function (User $user, Customer $customer) {
+        //     return $user->id === $customer->user_id;
+        // });
     }
 }

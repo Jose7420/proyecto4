@@ -22,7 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'user_id'
+
     ];
 
     /**
@@ -43,4 +43,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+
+
+
+
+    /**
+     * Devolver el customer asociado.
+     */
+    public function customer()
+    {
+        return $this->hasOne(Customer::class, 'user_id');
+    }
 }

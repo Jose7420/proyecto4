@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 use App\Http\Resources\CustomerResource;
 
@@ -76,6 +77,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
+
         $customerData = json_decode($request->getContent(), true);
         $customer->update($customerData['data']['attributes']);
 

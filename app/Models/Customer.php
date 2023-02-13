@@ -19,4 +19,23 @@ class Customer extends Model
         'country'
     ];
 
+
+
+
+    /**
+     * Devuelve el usuario asociado a un customer.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+
+    /**
+     * Devuelve los order de un customer determinado.
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'customer_id');
+    }
 }
