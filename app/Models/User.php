@@ -56,4 +56,26 @@ class User extends Authenticatable
     {
         return $this->hasOne(Customer::class, 'user_id');
     }
+
+    /**
+     * Los roles que tiene asignados un determinado usuario.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
+    }
+
+    public function isAdmin()
+    {
+        $roles = $this->roles;
+        $isAdmin = false;
+        foreach ($roles as $role) {
+            if($role->name == 'Admin') {
+                $isAdmin = true;
+            }
+        }
+        return $isAdmin;
+    }
+
+
 }

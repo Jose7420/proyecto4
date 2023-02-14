@@ -35,9 +35,9 @@ class AuthServiceProvider extends ServiceProvider
             return config('app.frontend_url')."/password-reset/$token?email={$notifiable->getEmailForPasswordReset()}";
         });
 
-        //
-        // Gate::define('update-customer', function (User $user, Customer $customer) {
-        //     return $user->id === $customer->user_id;
-        // });
+
+        Gate::define('update-customer', function (User $user, Customer $customer) {
+            return $user->id === $customer->user_id;
+        });
     }
 }
