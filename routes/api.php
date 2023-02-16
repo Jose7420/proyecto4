@@ -8,6 +8,7 @@ use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config\Config;
 use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\ArtworkController;
 use App\Http\Controllers\API\TokenController;
 
@@ -34,6 +35,8 @@ Route::apiResource('customers', CustomerController::class)->middleware('auth:san
 
 Route::apiResource('users', UserController::class);
 
+Route::apiResource('orders', OrderController::class)->middleware('auth:sanctum');
+
 Route::get('artworks', [ArtworkController::class, 'index']);
 
 // emite un nuevo token
@@ -41,6 +44,7 @@ Route::post('tokens', [TokenController::class, 'store']);
 // elimina el token del usuario autenticado
 Route::delete('tokens', [TokenController::class, 'destroy'])->middleware('auth:sanctum');
 
+Route::apiResource('orders', OrderController::class)->middleware('auth:sanctum');
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
         'address' => env('DB_HOST', '127.0.0.1'),
